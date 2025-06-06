@@ -1,0 +1,38 @@
+OUTPUT = a.out
+LIBNAME = incam
+
+TOPDIR := $(PWD)
+BINDIR := $(TOPDIR)/bin
+INCDIR := $(TOPDIR)/inc
+SRCDIR := $(TOPDIR)/src
+OBJDIR := $(TOPDIR)/obj
+LIBDIR := $(TOPDIR)/lib
+
+SHARELIBNAME = $(LIBDIR)/lib$(LIBNAME).so
+VPATH := $(INCDIR):$(SRCDIR):$(OBJDIR)
+
+STDFLAG = -std=c++11
+DEBUGFLAG = -g
+IFLAG = -I $(INCDIR)
+
+LINKFLAG = -L $(LIBDIR) -l $(LIBNAME)
+SHAREFLAG = -shared
+
+CC = g++ -fPIC
+AR = ar -rcs
+
+TARGET=$(BINDIR)/$(OUTPUT)
+
+SRC=$(wildcard $(SRCDIR)/*.cpp)
+OBJ=$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
+
+$(TARGET):$(SHARELIBNAME)
+	$(CC) $(STDFLAG) $(IFLAG) $(DEBUGFLAG) -o $(TARGET) $(LINKFLAG) $(SHARELIBNAME)
+
+$(SHARELIBNAME):$(OBJ)
+	$(CC) $(STDFLAG) $(IFLAG) $(DEBUGFLAG) $(SHAREFLAG) -o $(SHARELIBNAME) $(OBJ)
+
+$(OBJDIR)/%.o:$(SRCDIR)/%.cpp
+	$(CC) $(STDFLAG) $(IFLAG) $(DEBUGFLAG) -c $< -o $@
+
+
