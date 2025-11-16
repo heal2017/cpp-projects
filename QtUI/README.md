@@ -9,7 +9,7 @@
 下载项目
 
 ```bash
-$ git clone https://gitee.com/heal2017/cpp_template.git
+$ git clone https://gitee.com/heal2017/cpp-projects.git
 ```
 
 ## 重命名目录与初始化
@@ -17,7 +17,8 @@ $ git clone https://gitee.com/heal2017/cpp_template.git
 重命名目录
 
 ```bash
-$ mv cpp_template HelloWorld
+$ cd cpp-projects
+$ mv path_to_folder HelloWorld
 ```
 
 初始化
@@ -30,7 +31,7 @@ $ make init
 
 新建 src/HelloWorld.cpp文件
 ```bash
-#include<iostream>
+#include <iostream>
 using namespace std;
 int main(void)
 {
