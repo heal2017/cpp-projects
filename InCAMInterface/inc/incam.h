@@ -35,6 +35,14 @@ public:
 
     ~InCAM();
 
+    std::map<std::string, boost::variant<int, double, std::string, std::vector<std::string>>> parseInfo(const std::vector<std::string>& infoList);
+    
+    boost::variant<int, double, std::string> convertToNumber(const std::string& value);
+    
+    std::string trim(const std::string& str);
+
+    std::vector<std::string> split(const std::string& str, const std::string& delimiter, size_t maxSplit);
+
     int sendCmd(const std::string& cmd, const std::string& args);
 
     int sendCommandToPipe(const std::string& cmd, const std::string& args);
@@ -61,13 +69,7 @@ public:
 
     std::list<std::string> INFO_MM(const std::string& args);
 
-    boost::variant<int, double, std::string> convertToNumber(const std::string& value);
-    
-    // std::map<std::string, boost::variant<int, double, std::string, std::vector<std::string>>> parseInfo(const std::vector<std::string>& infoList);
-    // 
-    // std::string trim(const std::string& str);
-    // 
-    // std::vector<std::string> split(const std::string& str, const std::string& delimiter, size_t maxSplit);
+    // std::map<std::string, boost::variant<int, double, std::string, std::vector<std::string>>> DO_INFO(const std::string& args);
 
 };
 
